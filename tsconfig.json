@@ -21,7 +21,9 @@
       "#controllers/*": ["src/controllers/*"],
       "#entities/*": ["src/entities/*"],
       "#modules/*": ["src/modules/*"],
+      "#plugins/*": ["src/plugins/*"],
       "#services/*": ["src/services/*"]
     }
-  }
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts", "./.eslintrc.js"]
 }
