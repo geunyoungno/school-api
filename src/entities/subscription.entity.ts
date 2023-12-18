@@ -1,4 +1,4 @@
-import BaseEntity from '#entities/base.entity';
+import { BaseEntity } from '#entities/base.entity';
 import ISubscriptionSchema, {
   ISubscriptionColumnSchema,
   ISubscriptionRelationSchema,
@@ -13,7 +13,7 @@ const SubscriptionEntity = new EntitySchema<ISubscriptionSchema>({
       primary: true,
       type: 'int',
       generated: 'increment',
-      comment: '학교 id',
+      comment: '구독 id',
       name: 'id',
     },
     userId: {

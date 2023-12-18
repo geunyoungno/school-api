@@ -1,4 +1,4 @@
-import IBaseSchema from '#entities/interfaces/IBaseSchema';
+import { IBaseSchema } from '#entities/interfaces/IBaseSchema';
 import ISchoolSchema from '#entities/interfaces/ISchoolSchema';
 import IUserSchema from '#entities/interfaces/IUserSchema';
 

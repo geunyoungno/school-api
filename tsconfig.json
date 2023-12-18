@@ -19,9 +19,11 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "#controllers/*": ["src/controllers/*"],
+      "#dtos/*": ["src/dtos/*"],
       "#entities/*": ["src/entities/*"],
       "#modules/*": ["src/modules/*"],
       "#plugins/*": ["src/plugins/*"],
+      "#repositories/*": ["src/repositories/*"],
       "#services/*": ["src/services/*"]
     }
   },

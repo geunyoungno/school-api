@@ -1,4 +1,4 @@
-import BaseEntity from '#entities/base.entity';
+import { BaseEntity } from '#entities/base.entity';
 import IUserSchema, { IUserColumnSchema, IUserRelationSchema } from '#entities/interfaces/IUserSchema';
 import { EntitySchema, EntitySchemaColumnOptions, EntitySchemaRelationOptions } from 'typeorm';
 
@@ -38,6 +38,18 @@ const UserEntity = new EntitySchema<IUserSchema>({
     subscriptions: {
       type: 'one-to-many',
       target: 'SubscriptionEntity',
+      inverseSide: 'user',
+      createForeignKeyConstraints: false,
+    },
+    authorizations: {
+      type: 'one-to-many',
+      target: 'AuthorizationEntity',
+      inverseSide: 'user',
+      createForeignKeyConstraints: false,
+    },
+    newsFeeds: {
+      type: 'one-to-many',
+      target: 'NewsFeedEntity',
       inverseSide: 'user',
       createForeignKeyConstraints: false,
     },

@@ -1,4 +1,4 @@
-import BaseEntity from '#entities/base.entity';
+import { BaseEntity } from '#entities/base.entity';
 import ISchoolSchema, { ISchoolColumnSchema, ISchoolRelationSchema } from '#entities/interfaces/ISchoolSchema';
 import { EntitySchema, EntitySchemaColumnOptions, EntitySchemaRelationOptions } from 'typeorm';
 
@@ -37,6 +37,12 @@ const SchoolEntity = new EntitySchema<ISchoolSchema>({
     subscriptions: {
       type: 'one-to-many',
       target: 'SubscriptionEntity',
+      inverseSide: 'school',
+      createForeignKeyConstraints: false,
+    },
+    authorizations: {
+      type: 'one-to-many',
+      target: 'AuthorizationEntity',
       inverseSide: 'school',
       createForeignKeyConstraints: false,
     },

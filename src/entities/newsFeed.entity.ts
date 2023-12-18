@@ -1,4 +1,4 @@
-import BaseEntity from '#entities/base.entity';
+import { SoftDeleteBaseEntity } from '#entities/base.entity';
 import INewsFeedSchema, { INewsFeedColumnSchema, INewsFeedRelationSchema } from '#entities/interfaces/INewsFeedSchema';
 import { EntitySchema, EntitySchemaColumnOptions, EntitySchemaRelationOptions } from 'typeorm';
 
@@ -24,15 +24,30 @@ const NewsFeedEntity = new EntitySchema<INewsFeedSchema>({
       comment: '뉴스피드 내용',
       name: 'email',
     },
+    userId: {
+      type: 'int',
+      unsigned: true,
+      comment: '뉴스피드 개시하는 학교 id',
+      name: 'user_id',
+    },
     schoolId: {
       type: 'int',
       unsigned: true,
       comment: '뉴스피드 개시하는 학교 id',
       name: 'school_id',
     },
-    ...BaseEntity.columns,
+    ...SoftDeleteBaseEntity.columns,
   } satisfies Record<keyof INewsFeedColumnSchema, EntitySchemaColumnOptions>,
   relations: {
+    user: {
+      type: 'many-to-one',
+      target: 'UserEntity',
+      inverseSide: 'newsFeeds',
+      createForeignKeyConstraints: false,
+      joinColumn: {
+        name: 'user_id',
+      },
+    },
     school: {
       type: 'many-to-one',
       target: 'SchoolEntity',

@@ -1,4 +1,5 @@
-import IBaseSchema from '#entities/interfaces/IBaseSchema';
+import IAuthorizationSchema from '#entities/interfaces/IAuthorizationSchema';
+import { IBaseSchema } from '#entities/interfaces/IBaseSchema';
 import INewsFeedSchema from '#entities/interfaces/INewsFeedSchema';
 import ISubscriptionSchema from '#entities/interfaces/ISubscriptionSchema';
 
@@ -21,6 +22,8 @@ export interface ISchoolRelationSchema {
   newsFeeds?: INewsFeedSchema[];
 
   subscriptions?: ISubscriptionSchema[];
+
+  authorizations?: IAuthorizationSchema[];
 }
 
 export default interface ISchoolSchema extends ISchoolColumnSchema, IBaseSchema, ISchoolRelationSchema {}
