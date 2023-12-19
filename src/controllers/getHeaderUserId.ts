@@ -1,11 +1,8 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 export default function getHeaderUserId<THeader extends object>(headers: THeader): number {
-  if (
-    'userId' in headers &&
-    (typeof getHeaderUserId(headers) === 'number' || typeof getHeaderUserId(headers) === 'string')
-  ) {
-    return parseInt(`${getHeaderUserId(headers)}`, 10);
+  if ('userId' in headers && (typeof headers.userId === 'number' || typeof headers.userId === 'string')) {
+    return parseInt(`${headers.userId}`, 10);
   }
 
   // header 에서 loser case로 변환되어서 확인 필요

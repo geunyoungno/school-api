@@ -15,9 +15,9 @@ module.exports = {
   },
   verbose: false,
   silent: false,
-  testMatch: ['**/__tests__/*.(ts|tsx)', '**/__test__/*.(ts|tsx)'],
+  testMatch: ['**/__tests__/*.(ts|tsx)', '**/__test__/*.(ts|tsx)', '**/specs/*.(ts|tsx)'],
   testPathIgnorePatterns: ['/node_modules/', 'example/', 'dist/'],
-  setupFilesAfterEnv: ['./jest.setup.js'],
+  // setupFilesAfterEnv: ['./jest.setup.js'],
   // testSequencer: './test.spec.cjs',
   moduleNameMapper: pathsToModuleNameMapper(tsconfig.compilerOptions.paths, { prefix: '<rootDir>/' }),
 };

@@ -1,14 +1,10 @@
 import IUserSchema from '#entities/interfaces/IUserSchema';
 import { UserRepository } from '#repositories/user.repository';
 import { Injectable } from '@nestjs/common';
-import { DataSource } from 'typeorm';
 
 @Injectable()
 export class UserService {
-  constructor(
-    private dataSource: DataSource,
-    private readonly userRepository: UserRepository,
-  ) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   /**
    * 사용자 생성
