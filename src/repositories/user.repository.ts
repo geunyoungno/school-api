@@ -2,7 +2,7 @@ import getInsertResultId from '#entities/getInsertResultId';
 import IUserSchema from '#entities/interfaces/IUserSchema';
 import { TConn } from '#entities/interfaces/TConn';
 import UserEntity from '#entities/user.entity';
-import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 
 @Injectable()
@@ -15,7 +15,6 @@ export class UserRepository {
   ): Promise<{
     userId: IUserSchema['id'];
   }> {
-    const logger = new Logger();
     const beforeUserSchema = {
       name: user.name,
       email: user.email,

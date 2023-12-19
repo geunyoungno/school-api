@@ -1,6 +1,6 @@
 import ISubscriptionSchema from '#entities/interfaces/ISubscriptionSchema';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsISO8601, IsNumber } from 'class-validator';
+import { IsBoolean, IsISO8601, IsNumber, IsOptional } from 'class-validator';
 
 export class ResSubscriptionDto {
   @ApiProperty({
@@ -25,6 +25,7 @@ export class ResSubscriptionDto {
     nullable: true,
   })
   @IsISO8601()
+  @IsOptional()
   unsubscribedAt?: string;
 
   @ApiProperty({
@@ -36,8 +37,8 @@ export class ResSubscriptionDto {
 
   constructor(args: ISubscriptionSchema) {
     this.id = args.id;
-    this.subscribedAt = args.subscribedAt.toISOString();
-    this.unsubscribedAt = args?.unsubscribedAt.toISOString();
+    this.subscribedAt = new Date(args.subscribedAt).toISOString();
+    this.unsubscribedAt = args.unsubscribedAt == null ? undefined : new Date(args.unsubscribedAt).toISOString();
     this.isSubscribed = args.isSubscribed;
   }
 }

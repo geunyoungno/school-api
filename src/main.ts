@@ -1,5 +1,4 @@
 import { AppModule } from '#modules/app.module';
-import { HttpExceptionFilter } from '#plugins/filter/http-exception.filter';
 import { SwaggerService } from '#plugins/swagger/swagger.service';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
@@ -17,7 +16,7 @@ async function bootstrap() {
   );
 
   // 필터 추가
-  app.useGlobalFilters(new HttpExceptionFilter());
+  // app.useGlobalFilters(new HttpExceptionFilter());
 
   // swagger 추가
   app.get(SwaggerService).bootstrap(app);

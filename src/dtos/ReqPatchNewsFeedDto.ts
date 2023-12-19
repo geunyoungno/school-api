@@ -1,6 +1,6 @@
 import { ReqUserHeaderDto } from '#dtos/ReqUserHeaderDto';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class ReqPatchNewsFeedHeaderDto extends ReqUserHeaderDto {}
 
@@ -24,14 +24,18 @@ export class ReqPatchNewsFeedBodyDto {
   @ApiProperty({
     description: '뉴스 피드 제목',
     type: 'string',
+    nullable: true,
   })
   @IsString()
+  @IsOptional()
   title?: string;
 
   @ApiProperty({
     description: '뉴스 피드 내용',
     type: 'string',
+    nullable: true,
   })
   @IsString()
+  @IsOptional()
   content?: string;
 }

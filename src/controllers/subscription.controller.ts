@@ -1,3 +1,4 @@
+import getHeaderUserId from '#controllers/getHeaderUserId';
 import {
   ReqPatchUnsubscribeSubscriptionHeaderDto,
   ReqPatchUnsubscribeSubscriptionParamDto,
@@ -34,7 +35,7 @@ export class SubscriptionController {
     @Param() param: ReqPostSubscribeSubscriptionParamDto,
   ): Promise<ResSubscriptionDto> {
     const subscription = await this.subscriptionService.subscribe({
-      userId: headers.userId,
+      userId: getHeaderUserId(headers),
       subscription: {
         schoolId: param.schoolId,
       },
@@ -60,7 +61,7 @@ export class SubscriptionController {
     @Param() param: ReqPatchUnsubscribeSubscriptionParamDto,
   ): Promise<ResSubscriptionDto> {
     const subscription = await this.subscriptionService.unsubscribe({
-      userId: headers.userId,
+      userId: getHeaderUserId(headers),
       subscription: {
         id: param.subscriptionId,
         schoolId: param.schoolId,

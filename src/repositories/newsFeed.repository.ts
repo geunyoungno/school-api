@@ -101,6 +101,21 @@ export class NewsFeedRepository {
     };
   }
 
+  async selectsWhereSchool(
+    newsFeed: Pick<INewsFeedSchema, 'schoolId'>,
+    conn: TConn = this.dataSource,
+  ): Promise<Array<INewsFeedSchema>> {
+    const newsFeedEntities = await conn
+      .getRepository(NewsFeedEntity)
+      .createQueryBuilder()
+      .where(`school_id = :schoolId`, { schoolId: newsFeed.schoolId })
+      .andWhere('is_deleted = :isDeleted', { isDeleted: false })
+      .orderBy('id', 'DESC')
+      .getMany();
+
+    return newsFeedEntities;
+  }
+
   async selectsWhereUserAndSchool(
     newsFeed: Pick<INewsFeedSchema, 'userId' | 'schoolId'>,
     conn: TConn = this.dataSource,

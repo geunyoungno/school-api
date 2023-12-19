@@ -7,6 +7,8 @@ import { DataSource } from 'typeorm';
 
 @Injectable()
 export class SubscriptionRepository {
+  private readonly subscriptionAlias = 'sub_as';
+
   constructor(private dataSource: DataSource) {}
 
   async insertSubscription(
@@ -103,11 +105,11 @@ export class SubscriptionRepository {
   ): Promise<Array<ISubscriptionSchema>> {
     const subscriptionEntities = await conn
       .getRepository(SubscriptionEntity)
-      .createQueryBuilder()
-      .where(`user_id = :userId`, { userId: userId })
-      .andWhere('is_subscribed = :isSubscribed', { isSubscribed: true })
-      .leftJoinAndSelect(`school`, 'sch_as')
-      .orderBy('id', 'DESC')
+      .createQueryBuilder(`${this.subscriptionAlias}`)
+      .where(`${this.subscriptionAlias}.user_id = :userId`, { userId: userId })
+      .andWhere(`${this.subscriptionAlias}.is_subscribed = :isSubscribed`, { isSubscribed: true })
+      .leftJoinAndSelect(`${this.subscriptionAlias}.school`, 'sch_as')
+      .orderBy(`${this.subscriptionAlias}.id`, 'DESC')
       .getMany();
 
     return subscriptionEntities;

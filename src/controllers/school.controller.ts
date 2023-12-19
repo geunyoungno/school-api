@@ -1,3 +1,4 @@
+import getHeaderUserId from '#controllers/getHeaderUserId';
 import { ReqGetSchoolsHeaderDto } from '#dtos/ReqGetSchoolsDto';
 import { ReqPostSchoolBodyDto, ReqPostSchoolHeaderDto } from '#dtos/ReqPostSchoolDto';
 import { ResSchoolDto } from '#dtos/ResSchoolDto';
@@ -28,7 +29,7 @@ export class SchoolController {
     @Body() body: ReqPostSchoolBodyDto,
   ): Promise<ResSchoolDto> {
     const school = await this.schoolService.create({
-      userId: headers.userId,
+      userId: getHeaderUserId(headers),
       school: {
         name: body.name,
         location: body.location,
@@ -55,7 +56,7 @@ export class SchoolController {
     // @Param() param: ReqGetSchoolsParamDto
   ): Promise<Array<ResSchoolDto>> {
     const schoolds = await this.schoolService.readsByStudent({
-      userId: headers.userId,
+      userId: getHeaderUserId(headers),
     });
 
     return schoolds.map((school) => new ResSchoolDto(school));

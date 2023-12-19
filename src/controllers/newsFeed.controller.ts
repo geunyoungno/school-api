@@ -1,3 +1,4 @@
+import getHeaderUserId from '#controllers/getHeaderUserId';
 import { ReqDeleteNewsFeedHeaderDto, ReqDeleteNewsFeedParamDto } from '#dtos/ReqDeleteNewsFeedDto';
 import { ReqGetNewsFeedsHeaderDto, ReqGetNewsFeedsParamDto } from '#dtos/ReqGetNewsFeedsDto';
 import {
@@ -35,7 +36,7 @@ export class NewsFeedController {
     @Body() body: ReqPostNewsFeedBodyDto,
   ): Promise<ResNewsFeedDto> {
     const newsFeed = await this.newsFeedService.create({
-      userId: headers.userId,
+      userId: getHeaderUserId(headers),
       newsFeed: {
         title: body.title,
         content: body.content,
@@ -64,7 +65,7 @@ export class NewsFeedController {
     @Body() body: ReqPatchNewsFeedBodyDto,
   ): Promise<ResNewsFeedDto> {
     const newsFeed = await this.newsFeedService.update({
-      userId: headers.userId,
+      userId: getHeaderUserId(headers),
       newsFeed: {
         id: param.newsFeedId,
         schoolId: param.schoolId,
@@ -93,7 +94,7 @@ export class NewsFeedController {
     @Param() param: ReqDeleteNewsFeedParamDto,
   ): Promise<ResNewsFeedDto> {
     const newsFeed = await this.newsFeedService.softDelete({
-      userId: headers.userId,
+      userId: getHeaderUserId(headers),
       newsFeed: {
         id: param.newsFeedId,
         schoolId: param.schoolId,
@@ -104,7 +105,7 @@ export class NewsFeedController {
   }
 
   @ApiOperation({
-    summary: `학교 목록 조회`,
+    summary: `뉴스피드 목록 조회`,
     description: '학생은 구독 중인 학교 페이지별 소식을 볼 수 있다',
     tags: [tag],
   })
@@ -120,7 +121,7 @@ export class NewsFeedController {
     @Param() param: ReqGetNewsFeedsParamDto,
   ): Promise<Array<ResNewsFeedDto>> {
     const newsFeedds = await this.newsFeedService.readsBySchoolAndStudent({
-      userId: headers.userId,
+      userId: getHeaderUserId(headers),
       newsFeed: {
         schoolId: param.schoolId,
       },

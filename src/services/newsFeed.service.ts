@@ -168,8 +168,7 @@ export class NewsFeedService {
     });
 
     // stage 2:뉴스 피드 목록 조회
-    const newsFeeds = await this.newsFeedRepository.selectsWhereUserAndSchool({
-      userId: args.userId,
+    const newsFeeds = await this.newsFeedRepository.selectsWhereSchool({
       schoolId: args.newsFeed.schoolId,
     });
 
