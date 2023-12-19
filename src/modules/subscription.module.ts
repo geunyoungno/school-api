@@ -1,4 +1,4 @@
-import { SchoolController } from '#controllers/school.controller';
+import { SubscriptionController } from '#controllers/subscription.controller';
 import AuthorizationEntity from '#entities/authorization.entity';
 import NewsFeedEntity from '#entities/newsFeed.entity';
 import SchoolEntity from '#entities/school.entity';
@@ -9,7 +9,7 @@ import { NewsFeedRepository } from '#repositories/newsFeed.repository';
 import { SchoolRepository } from '#repositories/school.repository';
 import { SubscriptionRepository } from '#repositories/subscription.repository';
 import { UserRepository } from '#repositories/user.repository';
-import { SchoolService } from '#services/school.service';
+import { SubscriptionService } from '#services/subscription.service';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -24,9 +24,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       UserEntity,
     ]),
   ],
-  controllers: [SchoolController],
+  controllers: [SubscriptionController],
   providers: [
-    SchoolService,
+    SubscriptionService,
     //
     AuthorizationRepository,
     NewsFeedRepository,
@@ -35,4 +35,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     UserRepository,
   ],
 })
-export class SchoolModule {}
+export class SubscriptionModule {}

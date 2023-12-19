@@ -1,7 +1,8 @@
+import { ReqGetSchoolsHeaderDto } from '#dtos/ReqGetSchoolsDto';
 import { ReqPostSchoolBodyDto, ReqPostSchoolHeaderDto } from '#dtos/ReqPostSchoolDto';
 import { ResSchoolDto } from '#dtos/ResSchoolDto';
 import { SchoolService } from '#services/school.service';
-import { Body, Controller, Headers, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, Headers, HttpStatus, Post } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 
 const tag = 'schools';
@@ -35,5 +36,28 @@ export class SchoolController {
     });
 
     return new ResSchoolDto(school);
+  }
+
+  @ApiOperation({
+    summary: `학교 목록 조회`,
+    description: '학생은 구독 중인 학교 페이지 목록을 확인할 수 있다',
+    tags: [tag],
+  })
+  @ApiOkResponse({
+    status: HttpStatus.OK,
+    description: '학교 목록',
+    type: ResSchoolDto,
+    isArray: true,
+  })
+  @Get('schools')
+  async getSchools(
+    @Headers() headers: ReqGetSchoolsHeaderDto,
+    // @Param() param: ReqGetSchoolsParamDto
+  ): Promise<Array<ResSchoolDto>> {
+    const schoolds = await this.schoolService.readsByStudent({
+      userId: headers.userId,
+    });
+
+    return schoolds.map((school) => new ResSchoolDto(school));
   }
 }
