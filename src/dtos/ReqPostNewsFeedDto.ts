@@ -7,6 +7,7 @@ export class ReqPostNewsFeedHeaderDto extends ReqUserHeaderDto {}
 export class ReqPostNewsFeedParamDto {
   @ApiProperty({
     description: '학교 id',
+    type: 'number',
   })
   @IsNumber()
   schoolId!: number;
@@ -15,12 +16,14 @@ export class ReqPostNewsFeedParamDto {
 export class ReqPostNewsFeedBodyDto {
   @ApiProperty({
     description: '뉴스피드 제목',
+    type: 'string',
   })
   @IsString()
   title!: string;
 
   @ApiProperty({
     description: '뉴스피드 내용',
+    type: 'string',
   })
   @IsString()
   content!: string;

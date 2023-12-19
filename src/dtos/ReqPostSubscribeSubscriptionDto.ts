@@ -7,6 +7,7 @@ export class ReqPostSubscribeSubscriptionHeaderDto extends ReqUserHeaderDto {}
 export class ReqPostSubscribeSubscriptionParamDto {
   @ApiProperty({
     description: '학교 id',
+    type: 'number',
   })
   @IsNumber()
   schoolId!: number;

@@ -7,6 +7,7 @@ export class ReqGetNewsFeedsHeaderDto extends ReqUserHeaderDto {}
 export class ReqGetNewsFeedsParamDto {
   @ApiProperty({
     description: '학교 id',
+    type: 'number',
   })
   @IsNumber()
   schoolId!: number;

@@ -7,12 +7,14 @@ export class ReqPatchUnsubscribeSubscriptionHeaderDto extends ReqUserHeaderDto {
 export class ReqPatchUnsubscribeSubscriptionParamDto {
   @ApiProperty({
     description: '학교 id',
+    type: 'number',
   })
   @IsNumber()
   schoolId!: number;
 
   @ApiProperty({
     description: '구독 id',
+    type: 'number',
   })
   @IsNumber()
   subscriptionId!: number;
